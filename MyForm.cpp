@@ -3,13 +3,15 @@
 
 using namespace System;
 using namespace System::Windows::Forms;
-using namespace CppWinForm1;
 
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+[STAThread]
+int Main(array<String^>^ args)
+{
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	Application::Run(gcnew MyForm);
+
+	CppWinForm1::MyForm form;
+	Application::Run(%form);
 	return 0;
 }
-

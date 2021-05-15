@@ -2,8 +2,11 @@
 #include<iostream>
 #include<stack>
 #include<windows.h>
-using namespace System::Drawing;
+#include<cmath>
+#include<fstream>
 
+using namespace System::Drawing;
+const int MAXSIZE = 20;
 class TRoot;
 class TPoint;
 class TChart;
@@ -26,7 +29,6 @@ class TPoint : public TRoot
 {
 protected: 
 	int x, y;
-	std::stack<TLine> st;
 public:
 	TPoint(int x1 = 0, int y1 = 0);
 	void SetX(int val);
@@ -39,12 +41,18 @@ public:
 class TChart :public TRoot
 {
 	TRoot* pFirst, * pLast;
+	std::stack<TLine> st;
 public:
 	TChart();
 	int GetSize();
 	void SetFirst(TRoot* p);
 	void SetLast(TRoot* p);
+	TRoot* GetFisrt();
+	TRoot* GetLast();
 	void show(Graphics^ gr) override;
 	void hide(Graphics^ gr) override;
+	bool InsLine(TChart* line);
+	void save(std::string filename);
+	void read(std::string filename);
 };
 
